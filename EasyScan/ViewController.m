@@ -10,7 +10,9 @@
 #import "XHRadarView.h"
 #import "UIColor+Hex.h"
 #import <Masonry/Masonry.h>
+#import "EVOWaterWaveView.h"
 
+#define WaterWave 1
 
 @interface ViewController () <XHRadarViewDataSource, XHRadarViewDelegate>
 @property (nonatomic, strong) NSMutableArray * pointsArray;
@@ -64,7 +66,14 @@
 
 #pragma mark - setUI
 - (void)setUIConfig {
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"radar_background"]];
+    
+#if WaterWave
+    NSString * imageName = @"radar_background_1";
+#else
+    NSString * imageName = @"radar_background";
+#endif
+    
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     imageView.frame = self.view.bounds;
     [self.view addSubview:imageView];
     
@@ -91,6 +100,20 @@
     
     [self.view addSubview:self.vipBtn];
     self.vipBtn.frame = CGRectMake(kScreenWidth-56, 11+kStatusBarHeight, 46, 20);
+    
+#if WaterWave
+    //添加水波纹
+    EVOWaterWaveView * water = [[EVOWaterWaveView alloc] initWithFrame:CGRectMake(0, kScreenHeight-216, kScreenWidth,216)];
+    [self.view addSubview:water];
+    
+    EVOWaterWaveView * water2 = [[EVOWaterWaveView alloc] initWithFrame:CGRectMake(0, kScreenHeight-216, kScreenWidth,216)];
+    water2.waterWaveHeight = 50;
+    water2.height_Y = 1;
+    water2.offset_X = 6;
+    [self.view addSubview:water2];
+#else
+    
+#endif
 
     NSInteger top = 120;
     if (!isFullScreen) {
@@ -154,6 +177,7 @@
     if (!_vipBtn) {
         _vipBtn = [UIButton new];
         [_vipBtn setBackgroundImage:[UIImage imageNamed:@"VIP"] forState:UIControlStateNormal];
+        [_vipBtn setBackgroundImage:[UIImage imageNamed:@"VIP"] forState:UIControlStateSelected];
         [_vipBtn addTarget:self action:@selector(vipEnterAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _vipBtn;

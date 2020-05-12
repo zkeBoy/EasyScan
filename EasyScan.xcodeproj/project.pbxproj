@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0A5C0DB6246959310018E88F /* XHRadarPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DB3246959310018E88F /* XHRadarPointView.m */; };
 		0A5C0DB7246959310018E88F /* XHRadarIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DB4246959310018E88F /* XHRadarIndicatorView.m */; };
 		0A5C0DB8246959310018E88F /* XHRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DB5246959310018E88F /* XHRadarView.m */; };
+		0A5C0DC8246A7C460018E88F /* EVOWaterWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DC7246A7C460018E88F /* EVOWaterWaveView.m */; };
 		0ACD6D2924629CF1006C65FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2824629CF1006C65FA /* AppDelegate.m */; };
 		0ACD6D2C24629CF1006C65FA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2B24629CF1006C65FA /* SceneDelegate.m */; };
 		0ACD6D2F24629CF1006C65FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2E24629CF1006C65FA /* ViewController.m */; };
@@ -28,6 +29,8 @@
 		0A5C0DB3246959310018E88F /* XHRadarPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRadarPointView.m; sourceTree = "<group>"; };
 		0A5C0DB4246959310018E88F /* XHRadarIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRadarIndicatorView.m; sourceTree = "<group>"; };
 		0A5C0DB5246959310018E88F /* XHRadarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRadarView.m; sourceTree = "<group>"; };
+		0A5C0DC6246A7C460018E88F /* EVOWaterWaveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVOWaterWaveView.h; sourceTree = "<group>"; };
+		0A5C0DC7246A7C460018E88F /* EVOWaterWaveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOWaterWaveView.m; sourceTree = "<group>"; };
 		0ACD6D2424629CF1006C65FA /* EasyScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACD6D2724629CF1006C65FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0ACD6D2824629CF1006C65FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		0A5C0DAE246959200018E88F /* Third */ = {
 			isa = PBXGroup;
 			children = (
+				0A5C0DC5246A7C260018E88F /* WaterWave */,
 				0A5C0DAF246959310018E88F /* XHRadarView */,
 			);
 			path = Third;
@@ -79,6 +83,15 @@
 				0A5C0DB5246959310018E88F /* XHRadarView.m */,
 			);
 			path = XHRadarView;
+			sourceTree = "<group>";
+		};
+		0A5C0DC5246A7C260018E88F /* WaterWave */ = {
+			isa = PBXGroup;
+			children = (
+				0A5C0DC6246A7C460018E88F /* EVOWaterWaveView.h */,
+				0A5C0DC7246A7C460018E88F /* EVOWaterWaveView.m */,
+			);
+			path = WaterWave;
 			sourceTree = "<group>";
 		};
 		0ACD6D1B24629CF1006C65FA = {
@@ -261,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A5C0DB6246959310018E88F /* XHRadarPointView.m in Sources */,
+				0A5C0DC8246A7C460018E88F /* EVOWaterWaveView.m in Sources */,
 				0ACD6D2F24629CF1006C65FA /* ViewController.m in Sources */,
 				0ACD6D2924629CF1006C65FA /* AppDelegate.m in Sources */,
 				0ACD6D3A24629CF3006C65FA /* main.m in Sources */,
