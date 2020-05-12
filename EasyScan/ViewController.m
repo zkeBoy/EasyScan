@@ -85,7 +85,7 @@
     UIImageView * centerImgView = [[UIImageView alloc] initWithImage:CreateImage(@"icon_center_point")];
     [self.radarView addSubview:centerImgView];
     [centerImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(62);
+        make.width.height.mas_equalTo(20);
         make.center.equalTo(self.radarView);
     }];
     

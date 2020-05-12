@@ -112,7 +112,8 @@
     for (int i=0; i<sectionsNum ; i++) {
         /*画圆*/
         //边框圆
-        CGContextSetRGBStrokeColor(context, 0, 0, 0, (1-(float)i/(sectionsNum + 0.5))*0.5);//画笔线的颜色(透明度渐变)
+        //CGContextSetRGBStrokeColor(context, 0, 0, 0, (1-(float)i/(sectionsNum + 0.5))*0.5);//画笔线的颜色(透明度渐变)
+        CGContextSetRGBStrokeColor(context, 255, 255, 255, 1);
         CGContextSetLineWidth(context, 1.0);//线的宽度
         //void CGContextAddArc(CGContextRef c,CGFloat x, CGFloat y,CGFloat radius,CGFloat startAngle,CGFloat endAngle, int clockwise)1弧度＝180°/π （≈57.3°） 度＝弧度×180°/π 360°＝360×π/180 ＝2π 弧度
         // x,y为圆点坐标，radius半径，startAngle为开始的弧度，endAngle为 结束的弧度，clockwise 0为顺时针，1为逆时针。
