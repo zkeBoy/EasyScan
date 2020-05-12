@@ -166,13 +166,16 @@
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = INT_MAX;
     [_indicatorView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    _indicatorView.hidden = NO;
 }
 
 - (void)stop {
     [_indicatorView.layer removeAnimationForKey:@"rotationAnimation"];
+    _indicatorView.hidden = YES;
 }
 
 - (void)show {
+    _indicatorView.hidden = NO;
     for (UIView *subview in self.pointsView.subviews) {
         [subview removeFromSuperview];
     }

@@ -31,6 +31,11 @@
 - (void)startScan:(void(^)(void))block {
     [self.lanScanner start];
     self.scanLanFinishHandler = block;
+    [self.scanDevicesArray removeAllObjects];
+}
+
+- (void)reStartScan {
+    
 }
 
 #pragma mark - MMLANScannerDelegate

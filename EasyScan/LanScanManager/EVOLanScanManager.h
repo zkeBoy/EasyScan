@@ -20,6 +20,7 @@ kSPrStrong(MMDevice * mySelfDevice);
 
 + (EVOLanScanManager *)shareLanScanManager;
 - (void)startScan:(void(^)(void))block;
+- (void)reStartScan;
 @end
 
 NS_ASSUME_NONNULL_END

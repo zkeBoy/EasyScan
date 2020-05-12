@@ -13,7 +13,7 @@
 #import "EVOWaterWaveView.h"
 #import "EVOLanScanManager.h"
 #import "EVOAutoPointManager.h"
-
+#import "XHRadarIndicatorView.h"
 
 #define WaterWave 1
 
@@ -30,6 +30,7 @@
 @property (nonatomic, strong) UIImageView    * bgImgView;
 @property (nonatomic, strong) EVOWaterWaveView * water;
 @property (nonatomic, strong) EVOWaterWaveView * water2;
+@property (nonatomic, strong) NSMutableArray   <UIView *>* localPointerArray;
 @end
 
 @implementation ViewController
@@ -37,32 +38,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.localPointerArray = [NSMutableArray array];
+    
     self.titles = @[@"检测中",@"检测中.",@"检测中..",@"检测中..."];
     
     [self setUIConfig];
     
     self.autoPointTool = [EVOAutoPointManager new];
     
-    [self.radarView scan];
-    
-    [[EVOLanScanManager shareLanScanManager] startScan:^{
-        NSInteger number = [EVOLanScanManager shareLanScanManager].scanDevicesArray.count;
-        self.scanNumberLabel.text = NSFormatInt(number);
-        [self.autoPointTool resetAutoPoint:number];
-        [self startUpdatingRadar];
-    }];
-    
-    [self startTimer];
+    //隐藏
+    [self resetScan:YES];
 }
 
 #pragma mark - Custom Methods
 - (void)startUpdatingRadar {
-    typeof(self) __weak weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        weakSelf.radarView.labelText = [NSString stringWithFormat:@"搜索已完成，共找到%lu个目标", (unsigned long)weakSelf.autoPointTool.pointerArray.count];
-        [weakSelf.radarView show];
-        [weakSelf stopTimer];
-    });
+    self.radarView.labelText = [NSString stringWithFormat:@"搜索已完成，共找到%lu个目标", (unsigned long)self.autoPointTool.pointerArray.count];
+    [self.radarView show];
+    [self stopTimer];
 }
 
 #pragma mark - Timer
@@ -97,21 +89,25 @@
         self.bgImgView.image = CreateImage(@"radar_background");
         self.water2.hidden = YES;
         self.water.hidden  = YES;
+        [self.radarView stop];
+        [self.radarView hide];
     }else {
         self.bgImgView.image = CreateImage(@"radar_background_1");
         self.water2.hidden = NO;
         self.water.hidden  = NO;
+        self.scanNumberLabel.text = @"0";
+        [self.radarView scan];
+        for (UIView * view in self.localPointerArray) {
+            view.hidden = YES;
+            [view removeFromSuperview];
+        }
     }
 }
 
 #pragma mark - setUI
 - (void)setUIConfig {
-    
-#if WaterWave
+
     NSString * imageName = @"radar_background_1";
-#else
-    NSString * imageName = @"radar_background";
-#endif
     
     UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     imageView.frame = self.view.bounds;
@@ -180,6 +176,7 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     [imageView setImage:[UIImage imageNamed:@"icon_point"]];
     [pointView addSubview:imageView];
+    [self.localPointerArray addObject:pointView];
     return pointView;
 }
 
@@ -201,6 +198,13 @@
 - (void)clickScanDetectingAction {
     [self startTimer];
     [self resetScan:NO];
+    
+    [[EVOLanScanManager shareLanScanManager] startScan:^{
+        NSInteger number = [EVOLanScanManager shareLanScanManager].scanDevicesArray.count;
+        self.scanNumberLabel.text = NSFormatInt(number);
+        [self.autoPointTool resetAutoPoint:number];
+        [self startUpdatingRadar];
+    }];
 }
 
 #pragma mark - lazy init
@@ -247,7 +251,7 @@
         _scanButton.layer.shadowOffset = CGSizeMake(2, 0);
         _scanButton.layer.shadowRadius = 5.f;
         [_scanButton addTarget:self action:@selector(clickScanDetectingAction) forControlEvents:UIControlEventTouchUpInside];
-        [_scanButton setTitle:@"检测中…" forState:UIControlStateNormal];
+        [_scanButton setTitle:@"开始检测" forState:UIControlStateNormal];
         [_scanButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     }
     return _scanButton;
