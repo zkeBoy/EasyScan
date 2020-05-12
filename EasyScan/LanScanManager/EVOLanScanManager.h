@@ -13,8 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EVOLanScanManager : NSObject <MMLANScannerDelegate>
 kSPrStrong(MMLANScanner * lanScanner);
+kSPrCopy__(void(^scanLanFinishHandler)(void));
 
 + (EVOLanScanManager *)shareLanScanManager;
+- (void)startScan:(void(^)(void))block;
 @end
 
 NS_ASSUME_NONNULL_END

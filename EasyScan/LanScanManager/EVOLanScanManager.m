@@ -24,9 +24,13 @@
     self = [super init];
     if (self) {
         self.lanScanner = [[MMLANScanner alloc] initWithDelegate:self];
-        [self.lanScanner start];
     }
     return self;
+}
+
+- (void)startScan:(void(^)(void))block {
+    [self.lanScanner start];
+    self.scanLanFinishHandler = block;
 }
 
 #pragma mark - MMLANScannerDelegate
@@ -35,7 +39,11 @@
 }
 
 - (void)lanScanDidFinishScanningWithStatus:(MMLanScannerStatus)status {
-    
+    if (status==MMLanScannerStatusFinished) {
+        if (self.scanLanFinishHandler) {
+            self.scanLanFinishHandler();
+        }
+    }
 }
 
 - (void)lanScanProgressPinged:(long)pingedHosts from:(NSInteger)overallHosts {

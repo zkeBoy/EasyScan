@@ -54,6 +54,9 @@
     [self.radarView scan];
     [self startUpdatingRadar];
     
+    [[EVOLanScanManager shareLanScanManager] startScan:^{
+        
+    }];
 }
 
 #pragma mark - Custom Methods
