@@ -27,6 +27,9 @@
 @property (nonatomic, strong) NSTimer        * timer;
 @property (nonatomic,   copy) NSArray        * titles;
 @property (nonatomic, assign) NSInteger        loadingNumber;
+@property (nonatomic, strong) UIImageView    * bgImgView;
+@property (nonatomic, strong) EVOWaterWaveView * water;
+@property (nonatomic, strong) EVOWaterWaveView * water2;
 @end
 
 @implementation ViewController
@@ -34,14 +37,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.titles = @[@"检测中.",@"检测中..",@"检测中..."];
+    self.titles = @[@"检测中",@"检测中.",@"检测中..",@"检测中..."];
     
     [self setUIConfig];
     
     self.autoPointTool = [EVOAutoPointManager new];
     
     [self.radarView scan];
-    [self startUpdatingRadar];
     
     [[EVOLanScanManager shareLanScanManager] startScan:^{
         NSInteger number = [EVOLanScanManager shareLanScanManager].scanDevicesArray.count;
@@ -50,9 +52,7 @@
         [self startUpdatingRadar];
     }];
     
-    self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(refreshScanLoading) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-    [self.timer fire];
+    [self startTimer];
 }
 
 #pragma mark - Custom Methods
@@ -61,16 +61,47 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         weakSelf.radarView.labelText = [NSString stringWithFormat:@"搜索已完成，共找到%lu个目标", (unsigned long)weakSelf.autoPointTool.pointerArray.count];
         [weakSelf.radarView show];
+        [weakSelf stopTimer];
     });
 }
 
+#pragma mark - Timer
 - (void)refreshScanLoading {
-    if (self.loadingNumber>2) {
+    if (self.loadingNumber>3) {
         self.loadingNumber = 0;
     }
     NSString * title = self.titles[self.loadingNumber];
     [self.scanButton setTitle:title forState:UIControlStateNormal];
     self.loadingNumber++;
+}
+
+- (void)startTimer {
+    if (!self.timer) {
+        self.timer = [NSTimer timerWithTimeInterval:0.75 target:self selector:@selector(refreshScanLoading) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        [self.timer fire];
+    }
+}
+
+- (void)stopTimer {
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    [self.scanButton setTitle:@"开始检测" forState:UIControlStateNormal];
+    [self resetScan:YES];
+}
+
+- (void)resetScan:(BOOL)stop {
+    if (stop) {
+        self.bgImgView.image = CreateImage(@"radar_background");
+        self.water2.hidden = YES;
+        self.water.hidden  = YES;
+    }else {
+        self.bgImgView.image = CreateImage(@"radar_background_1");
+        self.water2.hidden = NO;
+        self.water.hidden  = NO;
+    }
 }
 
 #pragma mark - setUI
@@ -85,6 +116,7 @@
     UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     imageView.frame = self.view.bounds;
     [self.view addSubview:imageView];
+    self.bgImgView = imageView;
     
     XHRadarView * radarView = [[XHRadarView alloc] initWithFrame:CGRectMake(0, kStatusBarHeight+57, kScreenWidth, kScreenWidth)];
     radarView.clipsToBounds = YES;
@@ -109,20 +141,16 @@
     
     [self.view addSubview:self.vipBtn];
     self.vipBtn.frame = CGRectMake(kScreenWidth-56, 11+kStatusBarHeight, 46, 20);
-    
-#if WaterWave
+
     //添加水波纹
-    EVOWaterWaveView * water = [[EVOWaterWaveView alloc] initWithFrame:CGRectMake(0, kScreenHeight-216, kScreenWidth,216)];
-    [self.view addSubview:water];
+    self.water = [[EVOWaterWaveView alloc] initWithFrame:CGRectMake(0, kScreenHeight-216, kScreenWidth,216)];
+    [self.view addSubview:self.water];
     
-    EVOWaterWaveView * water2 = [[EVOWaterWaveView alloc] initWithFrame:CGRectMake(0, kScreenHeight-216, kScreenWidth,216)];
-    water2.waterWaveHeight = 50;
-    water2.height_Y = 2;
-    water2.offset_X = 7;
-    [self.view addSubview:water2];
-#else
-    
-#endif
+    self.water2 = [[EVOWaterWaveView alloc] initWithFrame:CGRectMake(0, kScreenHeight-216, kScreenWidth,216)];
+    self.water2.waterWaveHeight = 50;
+    self.water2.height_Y = 2;
+    self.water2.offset_X = 7;
+    [self.view addSubview:self.water2];
 
     NSInteger top = 120;
     if (!isFullScreen) {
@@ -171,7 +199,8 @@
 }
 
 - (void)clickScanDetectingAction {
-    
+    [self startTimer];
+    [self resetScan:NO];
 }
 
 #pragma mark - lazy init
