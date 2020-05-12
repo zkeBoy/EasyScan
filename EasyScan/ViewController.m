@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "XHRadarView.h"
 #import "UIColor+Hex.h"
+#import <Masonry/Masonry.h>
 
 
 @interface ViewController () <XHRadarViewDataSource, XHRadarViewDelegate>
@@ -81,6 +82,13 @@
     [self.view addSubview:radarView];
     self.radarView = radarView;
     
+    UIImageView * centerImgView = [[UIImageView alloc] initWithImage:CreateImage(@"icon_center_point")];
+    [self.radarView addSubview:centerImgView];
+    [centerImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(62);
+        make.center.equalTo(self.radarView);
+    }];
+    
     [self.view addSubview:self.vipBtn];
     self.vipBtn.frame = CGRectMake(kScreenWidth-56, 11+kStatusBarHeight, 46, 20);
 
@@ -93,9 +101,6 @@
     
     [self.view addSubview:self.scanTextLabel];
     [self.scanTextLabel setFrame:CGRectMake(0, CGRectGetMaxY(self.scanNumberLabel.frame)+20, kScreenWidth, 20)];
-    
-    //UIButton * shadeBtn = [UIButton new];
-    
     
     [self.view addSubview:self.scanButton];
     [self.scanButton setFrame:CGRectMake(73, CGRectGetMaxY(self.scanTextLabel.frame)+15, kScreenWidth-146, 46)];
