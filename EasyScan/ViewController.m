@@ -12,16 +12,18 @@
 #import <Masonry/Masonry.h>
 #import "EVOWaterWaveView.h"
 #import "EVOLanScanManager.h"
+#import "EVOAutoPointManager.h"
+
 
 #define WaterWave 1
 
 @interface ViewController () <XHRadarViewDataSource, XHRadarViewDelegate>
-@property (nonatomic, strong) NSMutableArray * pointsArray;
 @property (nonatomic, strong) XHRadarView    * radarView;
 @property (nonatomic, strong) UIButton       * vipBtn;
 @property (nonatomic, strong) UILabel        * scanNumberLabel;
 @property (nonatomic, strong) UILabel        * scanTextLabel;
 @property (nonatomic, strong) UIButton       * scanButton;
+@property (nonatomic, strong) EVOAutoPointManager * autoPointTool;
 @end
 
 @implementation ViewController
@@ -31,31 +33,16 @@
     
     [self setUIConfig];
     
-    //目标点位置
-    NSArray * arr = @[
-                    @[@6, @90],
-                    @[@-140, @108],
-                    @[@-83, @98],
-                    @[@-25, @142],
-                    @[@60, @111],
-                    @[@-111, @96],
-                    @[@150, @145],
-                    @[@25, @144],
-                    @[@-55, @110],
-                    @[@95, @109],
-                    @[@170, @180],
-                    @[@125, @112],
-                    @[@-150, @145],
-                    @[@-7, @160],
-                    ];
-    
-    [self.pointsArray addObjectsFromArray:arr];
+    self.autoPointTool = [EVOAutoPointManager new];
     
     [self.radarView scan];
     [self startUpdatingRadar];
     
     [[EVOLanScanManager shareLanScanManager] startScan:^{
-        
+        NSInteger number = [EVOLanScanManager shareLanScanManager].scanDevicesArray.count;
+        self.scanNumberLabel.text = NSFormatInt(number);
+        [self.autoPointTool resetAutoPoint:number];
+        [self startUpdatingRadar];
     }];
 }
 
@@ -63,7 +50,7 @@
 - (void)startUpdatingRadar {
     typeof(self) __weak weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        weakSelf.radarView.labelText = [NSString stringWithFormat:@"搜索已完成，共找到%lu个目标", (unsigned long)weakSelf.pointsArray.count];
+        weakSelf.radarView.labelText = [NSString stringWithFormat:@"搜索已完成，共找到%lu个目标", (unsigned long)weakSelf.autoPointTool.pointerArray.count];
         [weakSelf.radarView show];
     });
 }
@@ -139,7 +126,7 @@
 }
 
 - (NSInteger)numberOfPointsInRadarView:(XHRadarView *)radarView {
-    return [self.pointsArray count];
+    return self.autoPointTool.pointerArray.count;
 }
 
 - (UIView *)radarView:(XHRadarView *)radarView viewForIndex:(NSUInteger)index {
@@ -151,8 +138,8 @@
 }
 
 - (CGPoint)radarView:(XHRadarView *)radarView positionForIndex:(NSUInteger)index {
-    NSArray *point = [self.pointsArray objectAtIndex:index];
-    return CGPointMake([point[0] floatValue], [point[1] floatValue]);
+    EVOPointerObj *point = [self.autoPointTool.pointerArray objectAtIndex:index];
+    return CGPointMake(point.x, point.y);
 }
 
 #pragma mark - XHRadarViewDelegate
@@ -170,13 +157,6 @@
 }
 
 #pragma mark - lazy init
-- (NSMutableArray *)pointsArray {
-    if (!_pointsArray) {
-        _pointsArray = [NSMutableArray array];
-    }
-    return _pointsArray;
-}
-
 - (UIButton *)vipBtn {
     if (!_vipBtn) {
         _vipBtn = [UIButton new];
@@ -191,7 +171,7 @@
     if (!_scanNumberLabel) {
         _scanNumberLabel = [UILabel new];
         _scanNumberLabel.textAlignment = NSTextAlignmentCenter;
-        _scanNumberLabel.text = @"15";
+        _scanNumberLabel.text = @"0";
         _scanNumberLabel.font = [UIFont boldSystemFontOfSize:50];
         _scanNumberLabel.textColor = UIColor.whiteColor;
     }

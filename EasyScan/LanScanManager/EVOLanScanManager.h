@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <MMLANScanner.h>
+#import <MMDevice.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EVOLanScanManager : NSObject <MMLANScannerDelegate>
 kSPrStrong(MMLANScanner * lanScanner);
 kSPrCopy__(void(^scanLanFinishHandler)(void));
+kSPrStrong(NSMutableArray <MMDevice *>* scanDevicesArray);
 
 + (EVOLanScanManager *)shareLanScanManager;
 - (void)startScan:(void(^)(void))block;

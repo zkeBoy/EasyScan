@@ -7,7 +7,6 @@
 //
 
 #import "EVOLanScanManager.h"
-#import <MMDevice.h>
 
 @implementation EVOLanScanManager
 
@@ -23,6 +22,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.scanDevicesArray = [NSMutableArray array];
         self.lanScanner = [[MMLANScanner alloc] initWithDelegate:self];
     }
     return self;
@@ -36,6 +36,9 @@
 #pragma mark - MMLANScannerDelegate
 - (void)lanScanDidFindNewDevice:(MMDevice*)device {
     NSLog(@"%@",device.ipAddress);
+    if (![self.scanDevicesArray containsObject:device]) {
+        [self.scanDevicesArray addObject:device];
+    }
 }
 
 - (void)lanScanDidFinishScanningWithStatus:(MMLanScannerStatus)status {

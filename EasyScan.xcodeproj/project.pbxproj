@@ -12,6 +12,7 @@
 		0A5C0DB8246959310018E88F /* XHRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DB5246959310018E88F /* XHRadarView.m */; };
 		0A5C0DC8246A7C460018E88F /* EVOWaterWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DC7246A7C460018E88F /* EVOWaterWaveView.m */; };
 		0A5C0DCD246A86080018E88F /* EVOLanScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DCC246A86080018E88F /* EVOLanScanManager.m */; };
+		0A5C0DD1246A8F0F0018E88F /* EVOAutoPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DD0246A8F0F0018E88F /* EVOAutoPointManager.m */; };
 		0ACD6D2924629CF1006C65FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2824629CF1006C65FA /* AppDelegate.m */; };
 		0ACD6D2C24629CF1006C65FA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2B24629CF1006C65FA /* SceneDelegate.m */; };
 		0ACD6D2F24629CF1006C65FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2E24629CF1006C65FA /* ViewController.m */; };
@@ -34,6 +35,8 @@
 		0A5C0DC7246A7C460018E88F /* EVOWaterWaveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOWaterWaveView.m; sourceTree = "<group>"; };
 		0A5C0DCB246A86080018E88F /* EVOLanScanManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVOLanScanManager.h; sourceTree = "<group>"; };
 		0A5C0DCC246A86080018E88F /* EVOLanScanManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOLanScanManager.m; sourceTree = "<group>"; };
+		0A5C0DCF246A8F0F0018E88F /* EVOAutoPointManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVOAutoPointManager.h; sourceTree = "<group>"; };
+		0A5C0DD0246A8F0F0018E88F /* EVOAutoPointManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOAutoPointManager.m; sourceTree = "<group>"; };
 		0ACD6D2424629CF1006C65FA /* EasyScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACD6D2724629CF1006C65FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0ACD6D2824629CF1006C65FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -113,6 +116,15 @@
 			path = LanScanManager;
 			sourceTree = "<group>";
 		};
+		0A5C0DCE246A8EFA0018E88F /* AutoPoint */ = {
+			isa = PBXGroup;
+			children = (
+				0A5C0DCF246A8F0F0018E88F /* EVOAutoPointManager.h */,
+				0A5C0DD0246A8F0F0018E88F /* EVOAutoPointManager.m */,
+			);
+			path = AutoPoint;
+			sourceTree = "<group>";
+		};
 		0ACD6D1B24629CF1006C65FA = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +146,7 @@
 		0ACD6D2624629CF1006C65FA /* EasyScan */ = {
 			isa = PBXGroup;
 			children = (
+				0A5C0DCE246A8EFA0018E88F /* AutoPoint */,
 				0A5C0DCA246A85EA0018E88F /* LanScanManager */,
 				0A5C0DC9246A83E80018E88F /* View */,
 				0A5C0DAE246959200018E88F /* Third */,
@@ -300,6 +313,7 @@
 				0A5C0DCD246A86080018E88F /* EVOLanScanManager.m in Sources */,
 				0ACD6D2924629CF1006C65FA /* AppDelegate.m in Sources */,
 				0ACD6D3A24629CF3006C65FA /* main.m in Sources */,
+				0A5C0DD1246A8F0F0018E88F /* EVOAutoPointManager.m in Sources */,
 				0A5C0DB7246959310018E88F /* XHRadarIndicatorView.m in Sources */,
 				0A5C0DB8246959310018E88F /* XHRadarView.m in Sources */,
 				0ACD6D2C24629CF1006C65FA /* SceneDelegate.m in Sources */,
