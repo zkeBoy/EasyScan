@@ -1,16 +1,20 @@
 PODS:
   - Masonry (1.1.0)
+  - MMLanScan (3.0.0)
 
 DEPENDENCIES:
   - Masonry
+  - MMLanScan
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - Masonry
+    - MMLanScan
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MMLanScan: 86a0f77edbf163be30c1f58321469c7c8ce4c50e
 
-PODFILE CHECKSUM: 857bbeea7dfc46caeb3281be0965e33d7d409f24
+PODFILE CHECKSUM: d3b9237c0a2d1eccb28bab2c97b3531b4b1e8cbb
 
 COCOAPODS: 1.9.1

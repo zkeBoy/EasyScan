@@ -11,6 +11,7 @@
 #import "UIColor+Hex.h"
 #import <Masonry/Masonry.h>
 #import "EVOWaterWaveView.h"
+#import "EVOLanScanManager.h"
 
 #define WaterWave 1
 
@@ -108,8 +109,8 @@
     
     EVOWaterWaveView * water2 = [[EVOWaterWaveView alloc] initWithFrame:CGRectMake(0, kScreenHeight-216, kScreenWidth,216)];
     water2.waterWaveHeight = 50;
-    water2.height_Y = 1;
-    water2.offset_X = 6;
+    water2.height_Y = 2;
+    water2.offset_X = 7;
     [self.view addSubview:water2];
 #else
     
@@ -177,7 +178,7 @@
     if (!_vipBtn) {
         _vipBtn = [UIButton new];
         [_vipBtn setBackgroundImage:[UIImage imageNamed:@"VIP"] forState:UIControlStateNormal];
-        [_vipBtn setBackgroundImage:[UIImage imageNamed:@"VIP"] forState:UIControlStateSelected];
+        [_vipBtn setBackgroundImage:[UIImage imageNamed:@"VIP"] forState:UIControlStateHighlighted];
         [_vipBtn addTarget:self action:@selector(vipEnterAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _vipBtn;
