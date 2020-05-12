@@ -24,12 +24,17 @@
 @property (nonatomic, strong) UILabel        * scanTextLabel;
 @property (nonatomic, strong) UIButton       * scanButton;
 @property (nonatomic, strong) EVOAutoPointManager * autoPointTool;
+@property (nonatomic, strong) NSTimer        * timer;
+@property (nonatomic,   copy) NSArray        * titles;
+@property (nonatomic, assign) NSInteger        loadingNumber;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.titles = @[@"检测中.",@"检测中..",@"检测中..."];
     
     [self setUIConfig];
     
@@ -44,6 +49,10 @@
         [self.autoPointTool resetAutoPoint:number];
         [self startUpdatingRadar];
     }];
+    
+    self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(refreshScanLoading) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    [self.timer fire];
 }
 
 #pragma mark - Custom Methods
@@ -53,6 +62,15 @@
         weakSelf.radarView.labelText = [NSString stringWithFormat:@"搜索已完成，共找到%lu个目标", (unsigned long)weakSelf.autoPointTool.pointerArray.count];
         [weakSelf.radarView show];
     });
+}
+
+- (void)refreshScanLoading {
+    if (self.loadingNumber>2) {
+        self.loadingNumber = 0;
+    }
+    NSString * title = self.titles[self.loadingNumber];
+    [self.scanButton setTitle:title forState:UIControlStateNormal];
+    self.loadingNumber++;
 }
 
 #pragma mark - setUI
