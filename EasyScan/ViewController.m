@@ -70,13 +70,14 @@
     XHRadarView * radarView = [[XHRadarView alloc] initWithFrame:CGRectMake(0, kStatusBarHeight+57, kScreenWidth, kScreenWidth)];
     radarView.clipsToBounds = YES;
     radarView.dataSource = self;
-    //radarView.indicatorStartColor = RGBHexA(@"#F5A623",0.47);
-    //radarView.indicatorEndColor = UIColor.whiteColor;
+    radarView.indicatorStartColor = RGBHex(@"#FFFFFF");
+    radarView.indicatorEndColor = RGBHexA(@"#1FA5E0", 0);
     radarView.delegate = self;
     radarView.radius = 200;
-    radarView.backgroundColor = [UIColor colorWithRed:0.251 green:0.329 blue:0.490 alpha:1];
-    radarView.backgroundImage = [UIImage imageNamed:@"radar_background"];
+    //radarView.backgroundColor = [UIColor colorWithRed:0.251 green:0.329 blue:0.490 alpha:1];
+    //radarView.backgroundImage = [UIImage imageNamed:@"radar_background"];
     radarView.labelText = @" ";
+    radarView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:radarView];
     self.radarView = radarView;
     
@@ -159,7 +160,7 @@
         _scanNumberLabel.textAlignment = NSTextAlignmentCenter;
         _scanNumberLabel.text = @"15";
         _scanNumberLabel.font = [UIFont boldSystemFontOfSize:50];
-        _scanNumberLabel.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1/1.0];
+        _scanNumberLabel.textColor = UIColor.whiteColor;
     }
     return _scanNumberLabel;
 }
@@ -170,7 +171,7 @@
         _scanTextLabel.textAlignment = NSTextAlignmentCenter;
         _scanTextLabel.text = @"点击按钮开始扫描检测";
         _scanTextLabel.font = [UIFont boldSystemFontOfSize:14];
-        _scanTextLabel.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1/1.0];
+        _scanTextLabel.textColor = UIColor.whiteColor;
     }
     return _scanTextLabel;
 }
