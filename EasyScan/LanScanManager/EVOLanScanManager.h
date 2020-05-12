@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 kSPrStrong(MMLANScanner * lanScanner);
 kSPrCopy__(void(^scanLanFinishHandler)(void));
 kSPrStrong(NSMutableArray <MMDevice *>* scanDevicesArray);
+kSPrStrong(MMDevice * mySelfDevice);
 
 + (EVOLanScanManager *)shareLanScanManager;
 - (void)startScan:(void(^)(void))block;

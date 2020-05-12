@@ -38,6 +38,9 @@
     NSLog(@"%@",device.ipAddress);
     if (![self.scanDevicesArray containsObject:device]) {
         [self.scanDevicesArray addObject:device];
+        if (device.isLocalDevice) {
+            self.mySelfDevice = device;
+        }
     }
 }
 
