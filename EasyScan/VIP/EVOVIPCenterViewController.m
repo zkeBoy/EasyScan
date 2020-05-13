@@ -27,7 +27,7 @@
 
 #pragma mark - Private Method
 - (IBAction)clickPopAction:(id)sender {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //MARK:恢复内购

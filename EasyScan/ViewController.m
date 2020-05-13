@@ -127,7 +127,7 @@
     radarView.indicatorStartColor = RGBHex(@"#FFFFFF");
     radarView.indicatorEndColor = RGBHexA(@"#1FA5E0", 0);
     radarView.delegate = self;
-    radarView.radius = 200;
+    radarView.radius = kScreenWidth/2;
     //radarView.backgroundColor = [UIColor colorWithRed:0.251 green:0.329 blue:0.490 alpha:1];
     //radarView.backgroundImage = [UIImage imageNamed:@"radar_background"];
     radarView.labelText = @" ";
@@ -205,6 +205,7 @@
 
 - (void)clickScanDetectingAction {
     self.scanButton.enabled = NO;
+    self.vipBtn.enabled = NO;
     [self startTimer];
     [self resetScan:NO];
     
@@ -214,6 +215,7 @@
         [self.autoPointTool resetAutoPoint:number];
         [self startUpdatingRadar];
         self.scanButton.enabled = YES;
+        self.vipBtn.enabled = YES;
         [self presentScanDetailVC];
     }];
     
