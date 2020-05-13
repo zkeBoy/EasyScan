@@ -17,6 +17,8 @@
 		0AA9D4DD246B90810065FADC /* EVOSCanDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9D4DB246B90810065FADC /* EVOSCanDetailViewController.xib */; };
 		0AA9D4E1246BC50F0065FADC /* EVOScanDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9D4DF246BC50F0065FADC /* EVOScanDeviceTableViewCell.m */; };
 		0AA9D4E2246BC50F0065FADC /* EVOScanDeviceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9D4E0246BC50F0065FADC /* EVOScanDeviceTableViewCell.xib */; };
+		0AA9D4E7246BCDDF0065FADC /* EVOVIPCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9D4E5246BCDDF0065FADC /* EVOVIPCenterViewController.m */; };
+		0AA9D4E8246BCDDF0065FADC /* EVOVIPCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9D4E6246BCDDF0065FADC /* EVOVIPCenterViewController.xib */; };
 		0ACD6D2924629CF1006C65FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2824629CF1006C65FA /* AppDelegate.m */; };
 		0ACD6D2C24629CF1006C65FA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2B24629CF1006C65FA /* SceneDelegate.m */; };
 		0ACD6D2F24629CF1006C65FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2E24629CF1006C65FA /* ViewController.m */; };
@@ -47,6 +49,9 @@
 		0AA9D4DE246BC50F0065FADC /* EVOScanDeviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVOScanDeviceTableViewCell.h; sourceTree = "<group>"; };
 		0AA9D4DF246BC50F0065FADC /* EVOScanDeviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOScanDeviceTableViewCell.m; sourceTree = "<group>"; };
 		0AA9D4E0246BC50F0065FADC /* EVOScanDeviceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EVOScanDeviceTableViewCell.xib; sourceTree = "<group>"; };
+		0AA9D4E4246BCDDF0065FADC /* EVOVIPCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVOVIPCenterViewController.h; sourceTree = "<group>"; };
+		0AA9D4E5246BCDDF0065FADC /* EVOVIPCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOVIPCenterViewController.m; sourceTree = "<group>"; };
+		0AA9D4E6246BCDDF0065FADC /* EVOVIPCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EVOVIPCenterViewController.xib; sourceTree = "<group>"; };
 		0ACD6D2424629CF1006C65FA /* EasyScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACD6D2724629CF1006C65FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0ACD6D2824629CF1006C65FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -141,6 +146,16 @@
 			path = AutoPoint;
 			sourceTree = "<group>";
 		};
+		0AA9D4E3246BCA110065FADC /* VIP */ = {
+			isa = PBXGroup;
+			children = (
+				0AA9D4E4246BCDDF0065FADC /* EVOVIPCenterViewController.h */,
+				0AA9D4E5246BCDDF0065FADC /* EVOVIPCenterViewController.m */,
+				0AA9D4E6246BCDDF0065FADC /* EVOVIPCenterViewController.xib */,
+			);
+			path = VIP;
+			sourceTree = "<group>";
+		};
 		0ACD6D1B24629CF1006C65FA = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +177,7 @@
 		0ACD6D2624629CF1006C65FA /* EasyScan */ = {
 			isa = PBXGroup;
 			children = (
+				0AA9D4E3246BCA110065FADC /* VIP */,
 				0A5C0DCE246A8EFA0018E88F /* AutoPoint */,
 				0A5C0DCA246A85EA0018E88F /* LanScanManager */,
 				0A5C0DC9246A83E80018E88F /* View */,
@@ -272,6 +288,7 @@
 				0AA9D4DD246B90810065FADC /* EVOSCanDetailViewController.xib in Resources */,
 				0AA9D4E2246BC50F0065FADC /* EVOScanDeviceTableViewCell.xib in Resources */,
 				0ACD6D3424629CF3006C65FA /* Assets.xcassets in Resources */,
+				0AA9D4E8246BCDDF0065FADC /* EVOVIPCenterViewController.xib in Resources */,
 				0ACD6D3224629CF1006C65FA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +352,7 @@
 				0A5C0DD1246A8F0F0018E88F /* EVOAutoPointManager.m in Sources */,
 				0A5C0DB7246959310018E88F /* XHRadarIndicatorView.m in Sources */,
 				0A5C0DB8246959310018E88F /* XHRadarView.m in Sources */,
+				0AA9D4E7246BCDDF0065FADC /* EVOVIPCenterViewController.m in Sources */,
 				0AA9D4DC246B90810065FADC /* EVOSCanDetailViewController.m in Sources */,
 				0ACD6D2C24629CF1006C65FA /* SceneDelegate.m in Sources */,
 				0ACD6D4D2462A58C006C65FA /* UIColor+Hex.m in Sources */,

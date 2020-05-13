@@ -15,6 +15,7 @@
 #import "EVOAutoPointManager.h"
 #import "XHRadarIndicatorView.h"
 #import "EVOSCanDetailViewController.h"
+#import "EVOVIPCenterViewController.h"
 
 #define WaterWave 1
 
@@ -35,6 +36,11 @@
 @end
 
 @implementation ViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -193,7 +199,8 @@
 
 #pragma mark - Private Method
 - (void)vipEnterAction {
-    
+    EVOVIPCenterViewController * vipVC = [EVOVIPCenterViewController new];
+    [self.navigationController pushViewController:vipVC animated:YES];
 }
 
 - (void)clickScanDetectingAction {
