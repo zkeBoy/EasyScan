@@ -61,7 +61,7 @@
         for (NSInteger idx = 30; idx<40; idx++) {
             EVOPointerObj * obj = [EVOPointerObj new];
             //获取一个随机整数范围在：[0,100)包括0，不包括100
-            int x = arc4random() % 200-50;
+            int x = arc4random() % 200-150;
             int y = arc4random() % 100;
             obj.x = x;
             obj.y = y;
@@ -82,10 +82,46 @@
     }
     
     if (number>60) {
-        for (NSInteger idx = 50; idx<number; idx++) {
+        for (NSInteger idx = 50; idx<60; idx++) {
             EVOPointerObj * obj = [EVOPointerObj new];
             //获取一个随机整数范围在：[0,100)包括0，不包括100
             int x = arc4random() % 250-100;
+            int y = arc4random() % 150-50;
+            obj.x = x;
+            obj.y = y;
+            [self.pointerArray addObject:obj];
+        }
+    }
+    
+    if (number>70) {
+        for (NSInteger idx = 60; idx<70; idx++) {
+            EVOPointerObj * obj = [EVOPointerObj new];
+            //获取一个随机整数范围在：[0,100)包括0，不包括100
+            int x = arc4random() % 250;
+            int y = arc4random() % 150;
+            obj.x = x;
+            obj.y = y;
+            [self.pointerArray addObject:obj];
+        }
+    }
+    
+    if (number>80) {
+        for (NSInteger idx = 70; idx<80; idx++) {
+            EVOPointerObj * obj = [EVOPointerObj new];
+            //获取一个随机整数范围在：[0,100)包括0，不包括100
+            int x = arc4random() % 100;
+            int y = arc4random() % 100;
+            obj.x = x;
+            obj.y = y;
+            [self.pointerArray addObject:obj];
+        }
+    }
+    
+    if (number>80) {
+        for (NSInteger idx = 80; idx<number; idx++) {
+            EVOPointerObj * obj = [EVOPointerObj new];
+            //获取一个随机整数范围在：[0,100)包括0，不包括100
+            int x = arc4random() % 250;
             int y = arc4random() % 150-50;
             obj.x = x;
             obj.y = y;
