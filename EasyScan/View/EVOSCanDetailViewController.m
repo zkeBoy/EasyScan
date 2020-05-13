@@ -23,7 +23,8 @@
     self.reScanBtn.layer.cornerRadius = 14;
     
     NSString * speed = [EVOLanScanManager shareLanScanManager].getByteRate;
-    self.speedTextLabel.text = [NSString stringWithFormat:@"网速：%@,相当于90M宽带",speed];
+    NSString * brand = [[EVOLanScanManager shareLanScanManager] getBand];
+    self.speedTextLabel.text = [NSString stringWithFormat:@"网速：%@,相当于%@宽带",speed,brand];
 }
 
 #pragma mark - Private Method

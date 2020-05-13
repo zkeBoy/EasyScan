@@ -68,11 +68,11 @@
 //MARK:获取当前网速
 - (NSString *)getByteRate {
     long long intcurrentBytes = [self getInterfaceBytes];
-    NSString *rateStr = [self formatNetWork:intcurrentBytes];
+    NSString * rateStr = [self formatNetWork:intcurrentBytes];
     return rateStr;
 }
 
-- (long long) getInterfaceBytes {
+- (long long)getInterfaceBytes {
     struct ifaddrs *ifa_list = 0, *ifa;
     if (getifaddrs(&ifa_list) == -1) {
         return 0;
@@ -99,16 +99,60 @@
     return iBytes + oBytes;
 }
 
-- (NSString *)formatNetWork:(long long int)rate {
-    if (rate <1024) {
-        return [NSString stringWithFormat:@"%lldB/秒", rate];
-    } else if (rate >=1024&& rate <1024*1024) {
-        return [NSString stringWithFormat:@"%.1fKB/秒", (double)rate /1024];
-    } else if (rate >=1024*1024&& rate <1024*1024*1024) {
-        return [NSString stringWithFormat:@"%.2fMB/秒", (double)rate / (1024*1024)];
-    } else {
-        return @"10Kb/秒";
+- (NSString *)formatNetWork:(long long int)size {
+    NSString *formattedStr = nil;
+    if (size == 0){
+        formattedStr = NSLocalizedString(@"0 KB",@"");
+    }else if (size > 0 && size < 1024){
+        formattedStr = [NSString stringWithFormat:@"%qubytes", size];
+    }else if (size >= 1024 && size < pow(1024, 2)){
+        formattedStr = [NSString stringWithFormat:@"%quKB", (size / 1024)];
+    }else if (size >= pow(1024, 2) && size < pow(1024, 3)){
+        int intsize = size / pow(1024, 2);
+        formattedStr = [NSString stringWithFormat:@"%dMB", intsize];
+    }else if (size >= pow(1024, 3)){
+        int intsize = size / pow(1024, 3);
+        formattedStr = [NSString stringWithFormat:@"%dGB", intsize];
     }
+    return formattedStr;
+}
+
+- (NSString *)getBand {
+    long long size = [self getInterfaceBytes];
+    
+    size *=8;
+
+    NSString *formattedStr = nil;
+    if (size == 0){
+        formattedStr = NSLocalizedString(@"0",@"");
+        
+    }else if (size > 0 && size < 1024){
+        formattedStr = [NSString stringWithFormat:@"%qu", size];
+        
+    }else if (size >= 1024 && size < pow(1024, 2)){
+        int intsize = (int)(size / 1024);
+        int model = size % 1024;
+        if (model > 512) {
+            intsize += 1;
+        }
+        
+        formattedStr = [NSString stringWithFormat:@"%dK",intsize ];
+        
+    }else if (size >= pow(1024, 2) && size < pow(1024, 3)){
+        unsigned long long l = pow(1024, 2);
+        int intsize = size / pow(1024, 2);
+        int  model = (int)(size % l);
+        if (model > l/2) {
+            intsize +=1;
+        }
+        formattedStr = [NSString stringWithFormat:@"%dM", intsize];
+        
+    }else if (size >= pow(1024, 3)){
+        int intsize = size / pow(1024, 3);
+        formattedStr = [NSString stringWithFormat:@"%dG", intsize];
+    }
+    
+    return formattedStr;
 }
 
 

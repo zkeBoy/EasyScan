@@ -26,6 +26,8 @@ kSPrStrong(MMDevice * mySelfDevice);
 - (void)reStartScan;
 //MARK:获取当前网速
 - (NSString *)getByteRate;
+//转化为带宽
+- (NSString *)getBand;
 @end
 
 NS_ASSUME_NONNULL_END
