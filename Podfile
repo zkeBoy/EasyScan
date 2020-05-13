@@ -9,4 +9,5 @@ target 'EasyScan' do
 
   pod 'Masonry'
   pod 'MMLanScan'
+  pod 'RMStore'
 end

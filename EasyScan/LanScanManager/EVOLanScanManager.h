@@ -23,7 +23,6 @@ kSPrStrong(MMDevice * mySelfDevice);
 
 + (EVOLanScanManager *)shareLanScanManager;
 - (void)startScan:(void(^)(void))block;
-- (void)reStartScan;
 //MARK:获取当前网速
 - (NSString *)getByteRate;
 //转化为带宽

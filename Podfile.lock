@@ -1,20 +1,26 @@
 PODS:
   - Masonry (1.1.0)
   - MMLanScan (3.0.0)
+  - RMStore (0.7.1):
+    - RMStore/Core (= 0.7.1)
+  - RMStore/Core (0.7.1)
 
 DEPENDENCIES:
   - Masonry
   - MMLanScan
+  - RMStore
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - Masonry
     - MMLanScan
+    - RMStore
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MMLanScan: 86a0f77edbf163be30c1f58321469c7c8ce4c50e
+  RMStore: 64ba13a9c040e3b7572765d169f77175cd3243e5
 
-PODFILE CHECKSUM: d3b9237c0a2d1eccb28bab2c97b3531b4b1e8cbb
+PODFILE CHECKSUM: a5694480e832eff5e12ee82b95c1ce92a29d0e32
 
 COCOAPODS: 1.9.1

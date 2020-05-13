@@ -34,10 +34,6 @@
     [self.scanDevicesArray removeAllObjects];
 }
 
-- (void)reStartScan {
-    
-}
-
 #pragma mark - MMLANScannerDelegate
 - (void)lanScanDidFindNewDevice:(MMDevice*)device {
     NSLog(@"%@",device.ipAddress);

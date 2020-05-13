@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *centerHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *buyNumberLabel;
 @property (weak, nonatomic) IBOutlet UIButton *buyVIPButton;
-
+@property (nonatomic, copy) NSString * productId;
 @end
 
 @implementation EVOVIPCenterViewController
@@ -21,6 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.centerHeightConstraint.constant = kScreenWidth;
+    
+    [self registerStore];
     
     self.buyVIPButton.layer.cornerRadius = 4;
 }
@@ -32,14 +34,36 @@
 
 //MARK:恢复内购
 - (IBAction)restoreBuyAction:(id)sender {
-    
+    [self startBuyVIP];
 }
 
 //MARK:内购
 - (IBAction)buyVIPAction:(id)sender {
-    
+    [self startBuyVIP];
 }
 
+#pragma mark - Store
+- (void)registerStore {
+    NSArray * productIds = @[self.productId];
+    [[RMStore defaultStore] requestProducts:[NSSet setWithArray:productIds] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
+        if([products count] == 0){
+            NSLog(@"--------------没有商品------------------");
+            return;
+        }
+    } failure:^(NSError *error) {
+         NSLog(@"--------------请求商品失败------------------");
+    }];
+}
+
+- (void)startBuyVIP {
+    NSString * appleProductId = self.productId;
+    [[RMStore defaultStore] addPayment:appleProductId success:^(SKPaymentTransaction *transaction) {
+        NSLog(@"－－－－－－交易成功－－－－－－");
+    } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+        NSLog(@"－－－－－－交易失败－－－－－－");
+        NSLog(@"error:%@",error);
+    }];
+}
 
 /*
 #pragma mark - Navigation

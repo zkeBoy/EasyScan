@@ -10,6 +10,7 @@
 #define PrefixHeader_pch
 
 #import "UIColor+Hex.h"
+#import <RMStore.h>
 
 //HEX颜色值转化
 #define RGBHex(hex)   [UIColor colorWithHexString:hex]
