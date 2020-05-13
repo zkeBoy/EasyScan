@@ -34,7 +34,7 @@
 
 //MARK:恢复内购
 - (IBAction)restoreBuyAction:(id)sender {
-    [self startBuyVIP];
+    [self restoreProduct];
 }
 
 //MARK:内购
@@ -62,6 +62,14 @@
     } failure:^(SKPaymentTransaction *transaction, NSError *error) {
         NSLog(@"－－－－－－交易失败－－－－－－");
         NSLog(@"error:%@",error);
+    }];
+}
+
+- (void)restoreProduct {
+    [[RMStore defaultStore] restoreTransactionsOnSuccess:^(NSArray *transactions) {
+        
+    } failure:^(NSError *error) {
+        
     }];
 }
 
