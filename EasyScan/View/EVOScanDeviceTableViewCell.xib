@@ -46,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="qQH-vE-u7J" secondAttribute="bottom" constant="23" id="Vgv-2O-EcH"/>
                             <constraint firstItem="qQH-vE-u7J" firstAttribute="leading" secondItem="Y1m-sI-pzI" secondAttribute="trailing" constant="8" id="WFP-VJ-byf"/>
@@ -66,7 +66,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="bgContentView" destination="Y1m-sI-pzI" id="ZeO-Kl-1gz"/>
+                <outlet property="bgContentView" destination="EVo-5B-fc4" id="qy7-wk-dL3"/>
                 <outlet property="deviceAddressLabel" destination="qQH-vE-u7J" id="fpG-nE-hMG"/>
                 <outlet property="deviceImgView" destination="Y1m-sI-pzI" id="m7L-aY-E3h"/>
                 <outlet property="deviceNameLabel" destination="MA1-1L-P4b" id="uSM-rj-Iia"/>

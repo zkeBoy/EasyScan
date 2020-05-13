@@ -12,8 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.bgContentView.layer.cornerRadius = 8;
+    self.bgContentView.layer.backgroundColor = RGBHex(@"#F5F5F5").CGColor;
 }
 
 - (void)setDevice:(MMDevice *)device {
