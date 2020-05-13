@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <MMLANScanner.h>
 #import <MMDevice.h>
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+#include <net/if.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +24,8 @@ kSPrStrong(MMDevice * mySelfDevice);
 + (EVOLanScanManager *)shareLanScanManager;
 - (void)startScan:(void(^)(void))block;
 - (void)reStartScan;
+//MARK:获取当前网速
+- (NSString *)getByteRate;
 @end
 
 NS_ASSUME_NONNULL_END
