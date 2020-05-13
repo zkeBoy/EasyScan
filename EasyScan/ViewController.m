@@ -196,6 +196,7 @@
 }
 
 - (void)clickScanDetectingAction {
+    self.scanButton.enabled = NO;
     [self startTimer];
     [self resetScan:NO];
     
@@ -204,7 +205,17 @@
         self.scanNumberLabel.text = NSFormatInt(number);
         [self.autoPointTool resetAutoPoint:number];
         [self startUpdatingRadar];
+        self.scanButton.enabled = YES;
     }];
+    
+    if (@available(iOS 11.0, *)) {
+        // 初始化震动反馈类
+        UIImpactFeedbackGenerator *generator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];
+        // 准备
+        [generator prepare];
+        // 调用
+        [generator impactOccurred];
+     }
 }
 
 #pragma mark - lazy init
