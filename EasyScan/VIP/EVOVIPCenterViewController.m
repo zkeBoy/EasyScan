@@ -61,6 +61,7 @@
     NSString * appleProductId = self.productId;
     [[RMStore defaultStore] addPayment:appleProductId success:^(SKPaymentTransaction *transaction) {
         NSLog(@"－－－－－－交易成功－－－－－－");
+        [[EVOUserVIPManager shareUserVIPManager] saveUserIsVIP];
     } failure:^(SKPaymentTransaction *transaction, NSError *error) {
         NSLog(@"－－－－－－交易失败－－－－－－");
         NSLog(@"error:%@",error);
@@ -69,7 +70,7 @@
 
 - (void)restoreProduct {
     [[RMStore defaultStore] restoreTransactionsOnSuccess:^(NSArray *transactions) {
-        
+        [[EVOUserVIPManager shareUserVIPManager] saveUserIsVIP];
     } failure:^(NSError *error) {
         
     }];

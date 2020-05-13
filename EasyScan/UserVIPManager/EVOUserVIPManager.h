@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EVOUserVIPManager : NSObject
 @property (nonatomic, assign) BOOL isVIP;
 
++ (EVOUserVIPManager *)shareUserVIPManager;
 - (void)saveUserIsVIP;
 @end
 

@@ -60,7 +60,9 @@
 }
 
 - (void)lanScanDidFailedToScan {
-    
+    if (self.scanLanFinishHandler) {
+        self.scanLanFinishHandler();
+    }
 }
 
 //MARK:获取当前网速

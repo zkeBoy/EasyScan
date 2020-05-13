@@ -31,6 +31,7 @@
 
 - (void)saveUserIsVIP {
     NSNumber * number = @YES;
+    self.isVIP = YES;
     [[NSUserDefaults standardUserDefaults] setObject:number forKey:UserVIPStatusKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
