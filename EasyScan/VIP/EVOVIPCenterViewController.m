@@ -22,6 +22,8 @@
     // Do any additional setup after loading the view from its nib.
     self.centerHeightConstraint.constant = kScreenWidth;
     
+    self.productId = @"unlock001";
+    
     [self registerStore];
     
     self.buyVIPButton.layer.cornerRadius = 4;

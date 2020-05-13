@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EVOUserVIPManager : NSObject
-kSPrAssign(BOOL isVIP);
+@property (nonatomic, assign) BOOL isVIP;
 
 - (void)saveUserIsVIP;
 @end
