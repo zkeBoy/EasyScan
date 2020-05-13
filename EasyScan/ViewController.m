@@ -127,7 +127,7 @@
     radarView.indicatorStartColor = RGBHex(@"#FFFFFF");
     radarView.indicatorEndColor = RGBHexA(@"#1FA5E0", 0);
     radarView.delegate = self;
-    radarView.radius = kScreenWidth/2;
+    radarView.radius = kScreenWidth/2-1;
     //radarView.backgroundColor = [UIColor colorWithRed:0.251 green:0.329 blue:0.490 alpha:1];
     //radarView.backgroundImage = [UIImage imageNamed:@"radar_background"];
     radarView.labelText = @" ";
