@@ -107,8 +107,8 @@
     } else if (rate >=1024*1024&& rate <1024*1024*1024) {
         return [NSString stringWithFormat:@"%.2fMB/秒", (double)rate / (1024*1024)];
     } else {
-        return@"10Kb/秒";
-    };
+        return @"10Kb/秒";
+    }
 }
 
 

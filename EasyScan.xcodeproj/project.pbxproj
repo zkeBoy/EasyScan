@@ -13,6 +13,8 @@
 		0A5C0DC8246A7C460018E88F /* EVOWaterWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DC7246A7C460018E88F /* EVOWaterWaveView.m */; };
 		0A5C0DCD246A86080018E88F /* EVOLanScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DCC246A86080018E88F /* EVOLanScanManager.m */; };
 		0A5C0DD1246A8F0F0018E88F /* EVOAutoPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C0DD0246A8F0F0018E88F /* EVOAutoPointManager.m */; };
+		0AA9D4DC246B90810065FADC /* EVOSCanDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9D4DA246B90810065FADC /* EVOSCanDetailViewController.m */; };
+		0AA9D4DD246B90810065FADC /* EVOSCanDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9D4DB246B90810065FADC /* EVOSCanDetailViewController.xib */; };
 		0ACD6D2924629CF1006C65FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2824629CF1006C65FA /* AppDelegate.m */; };
 		0ACD6D2C24629CF1006C65FA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2B24629CF1006C65FA /* SceneDelegate.m */; };
 		0ACD6D2F24629CF1006C65FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2E24629CF1006C65FA /* ViewController.m */; };
@@ -37,6 +39,9 @@
 		0A5C0DCC246A86080018E88F /* EVOLanScanManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOLanScanManager.m; sourceTree = "<group>"; };
 		0A5C0DCF246A8F0F0018E88F /* EVOAutoPointManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVOAutoPointManager.h; sourceTree = "<group>"; };
 		0A5C0DD0246A8F0F0018E88F /* EVOAutoPointManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOAutoPointManager.m; sourceTree = "<group>"; };
+		0AA9D4D9246B90810065FADC /* EVOSCanDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVOSCanDetailViewController.h; sourceTree = "<group>"; };
+		0AA9D4DA246B90810065FADC /* EVOSCanDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOSCanDetailViewController.m; sourceTree = "<group>"; };
+		0AA9D4DB246B90810065FADC /* EVOSCanDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EVOSCanDetailViewController.xib; sourceTree = "<group>"; };
 		0ACD6D2424629CF1006C65FA /* EasyScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACD6D2724629CF1006C65FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0ACD6D2824629CF1006C65FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -103,6 +108,9 @@
 		0A5C0DC9246A83E80018E88F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AA9D4D9246B90810065FADC /* EVOSCanDetailViewController.h */,
+				0AA9D4DA246B90810065FADC /* EVOSCanDetailViewController.m */,
+				0AA9D4DB246B90810065FADC /* EVOSCanDetailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ACD6D3724629CF3006C65FA /* LaunchScreen.storyboard in Resources */,
+				0AA9D4DD246B90810065FADC /* EVOSCanDetailViewController.xib in Resources */,
 				0ACD6D3424629CF3006C65FA /* Assets.xcassets in Resources */,
 				0ACD6D3224629CF1006C65FA /* Main.storyboard in Resources */,
 			);
@@ -316,6 +325,7 @@
 				0A5C0DD1246A8F0F0018E88F /* EVOAutoPointManager.m in Sources */,
 				0A5C0DB7246959310018E88F /* XHRadarIndicatorView.m in Sources */,
 				0A5C0DB8246959310018E88F /* XHRadarView.m in Sources */,
+				0AA9D4DC246B90810065FADC /* EVOSCanDetailViewController.m in Sources */,
 				0ACD6D2C24629CF1006C65FA /* SceneDelegate.m in Sources */,
 				0ACD6D4D2462A58C006C65FA /* UIColor+Hex.m in Sources */,
 			);

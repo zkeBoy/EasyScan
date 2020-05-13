@@ -14,6 +14,7 @@
 #import "EVOLanScanManager.h"
 #import "EVOAutoPointManager.h"
 #import "XHRadarIndicatorView.h"
+#import "EVOSCanDetailViewController.h"
 
 #define WaterWave 1
 
@@ -206,6 +207,7 @@
         [self.autoPointTool resetAutoPoint:number];
         [self startUpdatingRadar];
         self.scanButton.enabled = YES;
+        [self presentScanDetailVC];
     }];
     
     if (@available(iOS 11.0, *)) {
@@ -216,6 +218,11 @@
         // 调用
         [generator impactOccurred];
      }
+}
+
+- (void)presentScanDetailVC {
+    EVOSCanDetailViewController * vc = [[EVOSCanDetailViewController alloc] initWithNibName:@"EVOSCanDetailViewController" bundle:nil];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - lazy init
