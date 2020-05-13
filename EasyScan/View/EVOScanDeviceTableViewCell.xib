@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="EVOScanDeviceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVo-5B-fc4">
+                        <rect key="frame" x="18" y="0.0" width="378" height="86"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="othre_device" translatesAutoresizingMaskIntoConstraints="NO" id="Y1m-sI-pzI">
+                                <rect key="frame" x="16" y="25.5" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="dyv-AY-fYE"/>
+                                    <constraint firstAttribute="height" constant="35" id="kFQ-A7-sD4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone 11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MA1-1L-P4b">
+                                <rect key="frame" x="59" y="23" width="61" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="63n-TT-wJb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的手机" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQH-vE-u7J">
+                                <rect key="frame" x="59" y="46" width="49.5" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="Ezh-MP-Guc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qQH-vE-u7J" secondAttribute="bottom" constant="23" id="Vgv-2O-EcH"/>
+                            <constraint firstItem="qQH-vE-u7J" firstAttribute="leading" secondItem="Y1m-sI-pzI" secondAttribute="trailing" constant="8" id="WFP-VJ-byf"/>
+                            <constraint firstItem="MA1-1L-P4b" firstAttribute="top" secondItem="EVo-5B-fc4" secondAttribute="top" constant="23" id="abh-vT-nFR"/>
+                            <constraint firstAttribute="height" constant="86" id="ciW-7d-dVO"/>
+                            <constraint firstItem="Y1m-sI-pzI" firstAttribute="leading" secondItem="EVo-5B-fc4" secondAttribute="leading" constant="16" id="dgB-cZ-X4p"/>
+                            <constraint firstItem="Y1m-sI-pzI" firstAttribute="centerY" secondItem="EVo-5B-fc4" secondAttribute="centerY" id="e3h-eg-8fG"/>
+                            <constraint firstItem="MA1-1L-P4b" firstAttribute="leading" secondItem="EVo-5B-fc4" secondAttribute="leading" constant="59" id="qR4-Vz-LQE"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="EVo-5B-fc4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="GsQ-y8-iZJ"/>
+                    <constraint firstAttribute="trailing" secondItem="EVo-5B-fc4" secondAttribute="trailing" constant="18" id="pKU-Xm-RJD"/>
+                    <constraint firstItem="EVo-5B-fc4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tB2-ZZ-mRT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="bgContentView" destination="Y1m-sI-pzI" id="ZeO-Kl-1gz"/>
+                <outlet property="deviceAddressLabel" destination="qQH-vE-u7J" id="fpG-nE-hMG"/>
+                <outlet property="deviceImgView" destination="Y1m-sI-pzI" id="m7L-aY-E3h"/>
+                <outlet property="deviceNameLabel" destination="MA1-1L-P4b" id="uSM-rj-Iia"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="othre_device" width="35" height="35"/>
+    </resources>
+</document>

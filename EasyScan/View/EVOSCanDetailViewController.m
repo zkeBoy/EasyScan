@@ -8,11 +8,13 @@
 
 #import "EVOSCanDetailViewController.h"
 #import "EVOLanScanManager.h"
+#import "EVOScanDeviceTableViewCell.h"
+#import "EVOLanScanManager.h"
 
-@interface EVOSCanDetailViewController ()
+@interface EVOSCanDetailViewController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *reScanBtn;
 @property (weak, nonatomic) IBOutlet UILabel *speedTextLabel;
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation EVOSCanDetailViewController
@@ -25,6 +27,11 @@
     NSString * speed = [EVOLanScanManager shareLanScanManager].getByteRate;
     NSString * brand = [[EVOLanScanManager shareLanScanManager] getBand];
     self.speedTextLabel.text = [NSString stringWithFormat:@"网速：%@,相当于%@宽带",speed,brand];
+    
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = 96;
+    self.tableView.separatorColor = [UIColor clearColor];
+    [self.tableView registerNib:[UINib nibWithNibName:@"EVOScanDeviceTableViewCell" bundle:nil] forCellReuseIdentifier:@"EVOScanDeviceTableViewCell"];
 }
 
 #pragma mark - Private Method
@@ -34,8 +41,26 @@
 
 - (IBAction)resetScanWIFIAction:(id)sender {
     [self clickBackAction:nil];
+    if (self.clickResetScanBlock) {
+        self.clickResetScanBlock();
+    }
 }
 
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return EVOLanScanManager.shareLanScanManager.scanDevicesArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MMDevice * device = EVOLanScanManager.shareLanScanManager.scanDevicesArray[indexPath.row];
+    EVOScanDeviceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"EVOScanDeviceTableViewCell" forIndexPath:indexPath];
+    cell.device = device;
+    return cell;
+}
 
 /*
 #pragma mark - Navigation

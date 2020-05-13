@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="reScanBtn" destination="PGE-LQ-h8k" id="Ul0-Ov-Wd7"/>
                 <outlet property="speedTextLabel" destination="dST-Tv-Ivp" id="SoM-J2-HgY"/>
+                <outlet property="tableView" destination="WzR-4D-Q22" id="6Bq-IQ-MlL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -132,14 +133,20 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WzR-4D-Q22">
+                    <rect key="frame" x="0.0" y="436" width="414" height="426"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="WzR-4D-Q22" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="0Cr-cy-Oqc"/>
                 <constraint firstItem="yS4-o2-T2m" firstAttribute="top" secondItem="ztg-cE-pSM" secondAttribute="bottom" constant="152" id="1oj-em-bAJ"/>
                 <constraint firstItem="ovf-JH-sjd" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="32" id="7vL-IY-CNB"/>
                 <constraint firstItem="HAX-ZZ-dGr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AsA-ZC-Pna"/>
                 <constraint firstItem="dST-Tv-Ivp" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="31" id="CTc-O7-evf"/>
                 <constraint firstItem="6If-L0-tm5" firstAttribute="top" secondItem="HAX-ZZ-dGr" secondAttribute="bottom" constant="10" id="Cjo-K0-itf"/>
+                <constraint firstItem="WzR-4D-Q22" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="EkN-N1-2N8"/>
                 <constraint firstItem="LR3-qb-DfA" firstAttribute="top" secondItem="ovf-JH-sjd" secondAttribute="bottom" constant="55" id="I0S-4o-c1q"/>
                 <constraint firstItem="0cY-Of-Kv8" firstAttribute="leading" secondItem="ice-5h-pA9" secondAttribute="trailing" constant="21" id="KOR-wb-on9"/>
                 <constraint firstItem="h3s-UY-MRG" firstAttribute="top" secondItem="dST-Tv-Ivp" secondAttribute="bottom" constant="24" id="KQo-q6-lFJ"/>
@@ -154,14 +161,16 @@
                 <constraint firstItem="0cY-Of-Kv8" firstAttribute="top" secondItem="h3s-UY-MRG" secondAttribute="bottom" constant="8" id="bFD-ej-1sA"/>
                 <constraint firstItem="ice-5h-pA9" firstAttribute="leading" secondItem="blX-e0-hxf" secondAttribute="trailing" constant="29" id="fPd-28-Nxc"/>
                 <constraint firstItem="yS4-o2-T2m" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="31" id="haW-Wz-rTt"/>
+                <constraint firstItem="WzR-4D-Q22" firstAttribute="top" secondItem="LR3-qb-DfA" secondAttribute="bottom" constant="14" id="nwW-vQ-YBC"/>
                 <constraint firstItem="PGE-LQ-h8k" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="260" id="rVI-uo-lYf"/>
+                <constraint firstItem="WzR-4D-Q22" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="rbX-RS-vGp"/>
                 <constraint firstItem="HAX-ZZ-dGr" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="60" id="sdc-cm-YgM"/>
                 <constraint firstItem="ztg-cE-pSM" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="29" id="wjz-6s-rdy"/>
                 <constraint firstItem="blX-e0-hxf" firstAttribute="top" secondItem="h3s-UY-MRG" secondAttribute="bottom" constant="8" id="zfw-Gj-v9b"/>
                 <constraint firstItem="LR3-qb-DfA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="31" id="zuD-SA-UNQ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="139" y="82"/>
+            <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
         </view>
     </objects>
     <resources>

@@ -42,15 +42,17 @@
 - (void)lanScanDidFindNewDevice:(MMDevice*)device {
     NSLog(@"%@",device.ipAddress);
     if (![self.scanDevicesArray containsObject:device]) {
-        [self.scanDevicesArray addObject:device];
         if (device.isLocalDevice) {
             self.mySelfDevice = device;
+        }else {
+            [self.scanDevicesArray addObject:device];
         }
     }
 }
 
 - (void)lanScanDidFinishScanningWithStatus:(MMLanScannerStatus)status {
     if (status==MMLanScannerStatusFinished) {
+        [self.scanDevicesArray insertObject:self.mySelfDevice atIndex:0];
         if (self.scanLanFinishHandler) {
             self.scanLanFinishHandler();
         }
