@@ -16,21 +16,22 @@
     static id hud;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        hud = [[self alloc] initWithView:[UIApplication sharedApplication].keyWindow];
+        hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     });
     return hud;
 }
 
 + (void)showStatus:(MFProgressHUDStatus)status text:(NSString*)text {
-    MFProgressHUD *HUD = [MFProgressHUD sharedHUD];
-    HUD.userInteractionEnabled = NO;
-    HUD.contentColor = [UIColor blackColor];
+    MFProgressHUD * HUD = [MFProgressHUD sharedHUD];
+    HUD.userInteractionEnabled= NO;
+    HUD.bezelView.color = [UIColor blackColor];
+    HUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     [HUD showAnimated:YES];
     HUD.square = NO;//等宽高
     HUD.margin = 15;//修改该值，可以修改加载框大小
     HUD.label.text = text;
     HUD.label.numberOfLines = 0;
-    HUD.label.textColor = [UIColor blackColor];
+    HUD.label.textColor = [UIColor whiteColor];
     [HUD setRemoveFromSuperViewOnHide:YES];
     HUD.label.font = [UIFont boldSystemFontOfSize:TEXT_SIZE];
     HUD.bezelView.layer.cornerRadius = 10;
@@ -49,34 +50,34 @@
         }
             break;
         case MFProgressHUDStatusError: {
-            NSString*errPath = [bundlePath stringByAppendingPathComponent:@"MBHUD_Error.png"];
-            UIImage *errImage = [UIImage imageWithContentsOfFile:errPath];
+            NSString * errPath = [bundlePath stringByAppendingPathComponent:@"MBHUD_Error.png"];
+            UIImage * errImage = [UIImage imageWithContentsOfFile:errPath];
             HUD.mode = MBProgressHUDModeCustomView;
-            UIImageView *errView = [[UIImageView alloc] initWithImage:errImage];
-            HUD.customView= errView;
+            UIImageView * errView = [[UIImageView alloc] initWithImage:errImage];
+            HUD.customView = errView;
             [HUD hideAnimated:YES afterDelay:1.5f];
         }
             break;
         case MFProgressHUDStatusLoading: {
-            HUD.userInteractionEnabled= YES;
+            HUD.userInteractionEnabled = YES;
             HUD.square = YES;//等宽高
             [HUD setMinSize:CGSizeMake(BGVIEW_WIDTH, BGVIEW_WIDTH)];
             //设置菊花框为白色
-            [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = [UIColor whiteColor];
+            [UIActivityIndicatorView appearanceWhenContainedInInstancesOfClasses:@[[MBProgressHUD class]]].color = [UIColor whiteColor];
             HUD.mode = MBProgressHUDModeIndeterminate;
         }
             break;
         case MFProgressHUDStatusWaitting: {
-            NSString*infoPath = [bundlePath stringByAppendingPathComponent:@"MBHUD_Warn.png"];
-            UIImage*infoImage = [UIImage imageWithContentsOfFile:infoPath];
+            NSString * infoPath = [bundlePath stringByAppendingPathComponent:@"MBHUD_Warn.png"];
+            UIImage * infoImage = [UIImage imageWithContentsOfFile:infoPath];
             HUD.mode = MBProgressHUDModeCustomView;
-            UIImageView*infoView = [[UIImageView alloc]initWithImage:infoImage];
+            UIImageView * infoView = [[UIImageView alloc]initWithImage:infoImage];
             HUD.customView= infoView;
             [HUD hideAnimated:YES afterDelay:1.5f];
         }
             break;
         case MFProgressHUDStatusInfo: {
-            NSString*infoPath = [bundlePath stringByAppendingPathComponent:@"MBHUD_Info.png"];
+            NSString * infoPath = [bundlePath stringByAppendingPathComponent:@"MBHUD_Info.png"];
             UIImage*infoImage = [UIImage imageWithContentsOfFile:infoPath];
             HUD.mode = MBProgressHUDModeCustomView;
             UIImageView*infoView = [[UIImageView alloc]initWithImage:infoImage];
@@ -91,17 +92,17 @@
 
 + (void)showMessage:(NSString*)text {
     MFProgressHUD *HUD = [MFProgressHUD sharedHUD];
-    HUD.userInteractionEnabled= NO;
+    HUD.userInteractionEnabled = NO;
+    HUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     HUD.bezelView.color = [UIColor blackColor];
     [HUD showAnimated:YES];
     HUD.square = NO;//等宽高
     HUD.margin = 15;//修改该值，可以修改加载框大小
-    HUD.label.text= text;
+    HUD.label.text = text;
     HUD.contentColor=[UIColor whiteColor];
     HUD.bezelView.layer.cornerRadius = 10;
     [HUD setMinSize:CGSizeZero];
     [HUD setMode:MBProgressHUDModeText];
-    //    HUD.dimBackground = YES;
     [HUD setRemoveFromSuperViewOnHide:YES];
     HUD.label.font = [UIFont boldSystemFontOfSize:TEXT_SIZE];
     [[UIApplication sharedApplication].keyWindow addSubview:HUD];
@@ -112,17 +113,14 @@
 
 + (void)showWaiting:(NSString*)text {
     [self showStatus:MFProgressHUDStatusWaitting text:text];
-
 }
 
 + (void)showError:(NSString*)text {
     [self showStatus:MFProgressHUDStatusError text:text];
-
 }
 
 + (void)showSuccess:(NSString*)text {
     [self showStatus:MFProgressHUDStatusSuccess text:text];
-
 }
 
 + (void)showLoading:(NSString*)text {
@@ -131,7 +129,8 @@
 
 + (void)showPayFail {
     MFProgressHUD *HUD = [MFProgressHUD sharedHUD];
-    HUD.userInteractionEnabled= NO;
+    HUD.userInteractionEnabled = NO;
+    HUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     HUD.bezelView.color = [UIColor blackColor];
     HUD.contentColor=[UIColor whiteColor];
     [HUD showAnimated:YES];
@@ -157,7 +156,8 @@
 
 + (void)showVideo:(UIView *)view setText:(NSString *)text {
     MFProgressHUD *HUD = [MFProgressHUD sharedHUD];
-    HUD.userInteractionEnabled= NO;
+    HUD.userInteractionEnabled = NO;
+    HUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     HUD.bezelView.color = [UIColor blackColor];
     HUD.contentColor=[UIColor whiteColor];
     [HUD showAnimated:YES];
@@ -174,7 +174,7 @@
     [view addSubview:HUD];
     [HUD setMinSize:CGSizeMake(BGVIEW_WIDTH, BGVIEW_WIDTH)];
     //设置菊花框为白色
-    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = [UIColor whiteColor];
+    [UIActivityIndicatorView appearanceWhenContainedInInstancesOfClasses:@[[MBProgressHUD class]]].color = [UIColor whiteColor];
     HUD.mode = MBProgressHUDModeIndeterminate;
 }
 
