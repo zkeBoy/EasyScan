@@ -10,5 +10,5 @@ target 'EasyScan' do
   pod 'Masonry'
   pod 'MMLanScan'
   pod 'RMStore'
-  pod 'MBProgressHUB'
+  pod 'MBProgressHUD'
 end
