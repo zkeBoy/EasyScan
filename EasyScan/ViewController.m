@@ -249,7 +249,9 @@
     WeakSelf(self);
     EVOSCanDetailViewController * vc = [[EVOSCanDetailViewController alloc] initWithNibName:@"EVOSCanDetailViewController" bundle:nil];
     vc.clickResetScanBlock = ^{
-        [WeakSelf clickScanDetectingAction];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [WeakSelf clickScanDetectingAction];
+        });
     };
     [self presentViewController:vc animated:YES completion:nil];
 }
