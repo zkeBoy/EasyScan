@@ -12,7 +12,6 @@
 #import "UIColor+Hex.h"
 #import <RMStore.h>
 #import "EVOUserVIPManager.h"
-#import "MBProgressHUD+Loading.h"
 
 //HEX颜色值转化
 #define RGBHex(hex)   [UIColor colorWithHexString:hex]

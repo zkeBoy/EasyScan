@@ -20,6 +20,8 @@
 		0AA9D4E7246BCDDF0065FADC /* EVOVIPCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9D4E5246BCDDF0065FADC /* EVOVIPCenterViewController.m */; };
 		0AA9D4E8246BCDDF0065FADC /* EVOVIPCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9D4E6246BCDDF0065FADC /* EVOVIPCenterViewController.xib */; };
 		0AA9D4EC246BE9E70065FADC /* EVOUserVIPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9D4EB246BE9E70065FADC /* EVOUserVIPManager.m */; };
+		0AB9E55A246CDD3700B0BB1E /* ZKHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9E557246CDD3700B0BB1E /* ZKHelperTool.m */; };
+		0AB9E560246CE06100B0BB1E /* MFProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9E55F246CE06100B0BB1E /* MFProgressHUD.m */; };
 		0ACD6D2924629CF1006C65FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2824629CF1006C65FA /* AppDelegate.m */; };
 		0ACD6D2C24629CF1006C65FA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2B24629CF1006C65FA /* SceneDelegate.m */; };
 		0ACD6D2F24629CF1006C65FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD6D2E24629CF1006C65FA /* ViewController.m */; };
@@ -55,6 +57,10 @@
 		0AA9D4E6246BCDDF0065FADC /* EVOVIPCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EVOVIPCenterViewController.xib; sourceTree = "<group>"; };
 		0AA9D4EA246BE9E70065FADC /* EVOUserVIPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EVOUserVIPManager.h; sourceTree = "<group>"; };
 		0AA9D4EB246BE9E70065FADC /* EVOUserVIPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EVOUserVIPManager.m; sourceTree = "<group>"; };
+		0AB9E557246CDD3700B0BB1E /* ZKHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHelperTool.m; sourceTree = "<group>"; };
+		0AB9E558246CDD3700B0BB1E /* ZKHelperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHelperTool.h; sourceTree = "<group>"; };
+		0AB9E55E246CE06100B0BB1E /* MFProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFProgressHUD.h; sourceTree = "<group>"; };
+		0AB9E55F246CE06100B0BB1E /* MFProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFProgressHUD.m; sourceTree = "<group>"; };
 		0ACD6D2424629CF1006C65FA /* EasyScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACD6D2724629CF1006C65FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0ACD6D2824629CF1006C65FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -215,6 +221,10 @@
 		0ACD6D4A2462A4EA006C65FA /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0AB9E55E246CE06100B0BB1E /* MFProgressHUD.h */,
+				0AB9E55F246CE06100B0BB1E /* MFProgressHUD.m */,
+				0AB9E558246CDD3700B0BB1E /* ZKHelperTool.h */,
+				0AB9E557246CDD3700B0BB1E /* ZKHelperTool.m */,
 				0ACD6D4B2462A58C006C65FA /* UIColor+Hex.h */,
 				0ACD6D4C2462A58C006C65FA /* UIColor+Hex.m */,
 			);
@@ -358,9 +368,11 @@
 				0AA9D4E1246BC50F0065FADC /* EVOScanDeviceTableViewCell.m in Sources */,
 				0A5C0DB6246959310018E88F /* XHRadarPointView.m in Sources */,
 				0A5C0DC8246A7C460018E88F /* EVOWaterWaveView.m in Sources */,
+				0AB9E55A246CDD3700B0BB1E /* ZKHelperTool.m in Sources */,
 				0AA9D4EC246BE9E70065FADC /* EVOUserVIPManager.m in Sources */,
 				0ACD6D2F24629CF1006C65FA /* ViewController.m in Sources */,
 				0A5C0DCD246A86080018E88F /* EVOLanScanManager.m in Sources */,
+				0AB9E560246CE06100B0BB1E /* MFProgressHUD.m in Sources */,
 				0ACD6D2924629CF1006C65FA /* AppDelegate.m in Sources */,
 				0ACD6D3A24629CF3006C65FA /* main.m in Sources */,
 				0A5C0DD1246A8F0F0018E88F /* EVOAutoPointManager.m in Sources */,

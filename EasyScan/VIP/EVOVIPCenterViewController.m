@@ -8,6 +8,7 @@
 
 #import "EVOVIPCenterViewController.h"
 #import "ZKHelperTool.h"
+#import "MFProgressHUD.h"
 
 @interface EVOVIPCenterViewController ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint * centerHeightConstraint;
@@ -45,30 +46,30 @@
 
 #pragma mark - Store
 - (void)startBuyVIP {
-    [MBProgressHUD showHUD];
     NSString * appleProductId = self.productId;
+    [MFProgressHUD showLoading:@"支付中..."];
     [[RMStore defaultStore] addPayment:appleProductId success:^(SKPaymentTransaction *transaction) {
         NSLog(@"－－－－－－交易成功－－－－－－");
         [[EVOUserVIPManager shareUserVIPManager] saveUserIsVIP];
         [ZKHelperTool showMsg:@"交易成功"];
-        [MBProgressHUD hideHUD];
+        [MFProgressHUD hideHUDNow];
     } failure:^(SKPaymentTransaction *transaction, NSError *error) {
         NSLog(@"－－－－－－交易失败－－－－－－");
         NSLog(@"error:%@",error);
         [ZKHelperTool showMsg:@"交易失败"];
-        [MBProgressHUD hideHUD];
+        [MFProgressHUD hideHUDNow];
     }];
 }
 
 - (void)restoreProduct {
-    [MBProgressHUD showProgressHudWithMessage:@"恢复购买"];
+    [MFProgressHUD showLoading:@"恢复..."];
     [[RMStore defaultStore] restoreTransactionsOnSuccess:^(NSArray *transactions) {
         [[EVOUserVIPManager shareUserVIPManager] saveUserIsVIP];
         [ZKHelperTool showMsg:@"恢复成功"];
-        [MBProgressHUD hideHUD];
+        [MFProgressHUD hideHUDNow];
     } failure:^(NSError *error) {
-        [MBProgressHUD hideHUD];
         [ZKHelperTool showMsg:@"恢复失败"];
+        [MFProgressHUD hideHUDNow];
     }];
 }
 
