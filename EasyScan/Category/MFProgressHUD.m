@@ -16,14 +16,14 @@
     static id hud;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud = [[self alloc] initWithView:[UIApplication sharedApplication].keyWindow];
     });
     return hud;
 }
 
 + (void)showStatus:(MFProgressHUDStatus)status text:(NSString*)text {
     MFProgressHUD * HUD = [MFProgressHUD sharedHUD];
-    HUD.userInteractionEnabled= NO;
+    HUD.userInteractionEnabled = NO;
     HUD.bezelView.color = [UIColor blackColor];
     HUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     [HUD showAnimated:YES];
@@ -36,7 +36,6 @@
     HUD.label.font = [UIFont boldSystemFontOfSize:TEXT_SIZE];
     HUD.bezelView.layer.cornerRadius = 10;
     [HUD setMinSize:CGSizeZero];
-    [[UIApplication sharedApplication].keyWindow addSubview:HUD];
     //图片文件获取
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"MBProgressHUD" ofType:@"bundle"];
     switch(status) {
@@ -88,6 +87,8 @@
         default:
             break;
      }
+    
+    [self.currentController.view addSubview:HUD];
 }
 
 + (void)showMessage:(NSString*)text {
@@ -184,6 +185,25 @@
 
 + (void)hideHUDNow {
     [[MFProgressHUD sharedHUD] hideAnimated:YES afterDelay:0];
+}
+
++ (UIViewController *)currentController {
+    UIViewController * topViewController = [self topViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    while (topViewController.presentedViewController) {
+        topViewController = [self topViewController:topViewController.presentedViewController];
+    }
+    return topViewController;
+}
+
++ (UIViewController *)topViewController:(UIViewController *)vc {
+    if ([vc isKindOfClass:[UINavigationController class]]) {
+        return [self topViewController:[(UINavigationController *)vc topViewController]];
+    }else if ([vc isKindOfClass:[UITabBarController class]]) {
+        return [self topViewController:[(UITabBarController *)vc selectedViewController]];
+    }else {
+        return vc;
+    }
+    return nil;
 }
 
 @end
