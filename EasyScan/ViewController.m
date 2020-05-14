@@ -167,7 +167,7 @@
     [self.scanTextLabel setFrame:CGRectMake(0, CGRectGetMaxY(self.scanNumberLabel.frame)+20, kScreenWidth, 20)];
     
     [self.view addSubview:self.scanButton];
-    [self.scanButton setFrame:CGRectMake(73, CGRectGetMaxY(self.scanTextLabel.frame)+15, kScreenWidth-146, 46)];
+    [self.scanButton setFrame:CGRectMake(31, CGRectGetMaxY(self.scanTextLabel.frame)+15, kScreenWidth-62, 46)];
 }
 
 #pragma mark - XHRadarViewDataSource
@@ -205,11 +205,15 @@
 }
 
 - (void)clickScanDetectingAction {
+#ifdef OpenApplePay
     //现判断用户是否内购
     if(![EVOUserVIPManager shareUserVIPManager].isVIP) {
         [self vipEnterAction];
         return;
     }
+#else
+    
+#endif
     
     self.scanButton.enabled = NO;
     self.vipBtn.enabled = NO;
@@ -263,6 +267,11 @@
         [_vipBtn setBackgroundImage:[UIImage imageNamed:@"VIP"] forState:UIControlStateNormal];
         [_vipBtn setBackgroundImage:[UIImage imageNamed:@"VIP"] forState:UIControlStateHighlighted];
         [_vipBtn addTarget:self action:@selector(vipEnterAction) forControlEvents:UIControlEventTouchUpInside];
+#ifdef OpenApplePay
+        _vipBtn.hidden = NO;
+#else
+        _vipBtn.hidden = YES;
+#endif
     }
     return _vipBtn;
 }
