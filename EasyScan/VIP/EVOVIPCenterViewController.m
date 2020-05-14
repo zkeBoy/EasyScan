@@ -62,7 +62,7 @@
 }
 
 - (void)restoreProduct {
-    [MFProgressHUD showLoading:@"恢复..."];
+    [MFProgressHUD showLoading:@"恢复购买"];
     [[RMStore defaultStore] restoreTransactionsOnSuccess:^(NSArray *transactions) {
         [[EVOUserVIPManager shareUserVIPManager] saveUserIsVIP];
         [ZKHelperTool showMsg:@"恢复成功"];

@@ -6,7 +6,7 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 target 'EasyScan' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  pod 'AFNetworking', '~> 3.2.1', :subspecs => ['Reachability', 'Serialization', 'Security', 'NSURLSession']
   pod 'Masonry'
   pod 'MMLanScan'
   pod 'RMStore'

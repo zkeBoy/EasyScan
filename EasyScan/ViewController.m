@@ -16,6 +16,7 @@
 #import "XHRadarIndicatorView.h"
 #import "EVOSCanDetailViewController.h"
 #import "EVOVIPCenterViewController.h"
+#import "MFProgressHUD.h"
 
 #define WaterWave 1
 
@@ -216,13 +217,13 @@
     [self resetScan:NO];
     
     [[EVOLanScanManager shareLanScanManager] startScan:^{
-        NSInteger number = [EVOLanScanManager shareLanScanManager].scanDevicesArray.count;
-        self.scanNumberLabel.text = NSFormatInt(number);
-        [self.autoPointTool resetAutoPoint:number];
-        [self startUpdatingRadar];
-        self.scanButton.enabled = YES;
-        self.vipBtn.enabled = YES;
+        [self showScanResult];
         [self presentScanDetailVC];
+    }failure:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self showScanResult];
+            [MFProgressHUD showMessage:@"请检查网络状态!"];
+        });
     }];
     
     if (@available(iOS 11.0, *)) {
@@ -233,6 +234,15 @@
         // 调用
         [generator impactOccurred];
      }
+}
+
+- (void)showScanResult {
+    NSInteger number = [EVOLanScanManager shareLanScanManager].scanDevicesArray.count;
+    self.scanNumberLabel.text = NSFormatInt(number);
+    [self.autoPointTool resetAutoPoint:number];
+    [self startUpdatingRadar];
+    self.scanButton.enabled = YES;
+    self.vipBtn.enabled = YES;
 }
 
 - (void)presentScanDetailVC {

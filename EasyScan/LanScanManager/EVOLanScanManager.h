@@ -18,11 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EVOLanScanManager : NSObject <MMLANScannerDelegate>
 kSPrStrong(MMLANScanner * lanScanner);
 kSPrCopy__(void(^scanLanFinishHandler)(void));
+kSPrCopy__(void(^scanLanFailurHandler)(void));
 kSPrStrong(NSMutableArray <MMDevice *>* scanDevicesArray);
 kSPrStrong(MMDevice * mySelfDevice);
 
 + (EVOLanScanManager *)shareLanScanManager;
-- (void)startScan:(void(^)(void))block;
+- (void)startScan:(void(^)(void))block failure:(void(^)(void))fblock;
 //MARK:获取当前网速
 - (NSString *)getByteRate;
 //转化为带宽

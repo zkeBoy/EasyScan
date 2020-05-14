@@ -11,6 +11,7 @@
 
 #import "UIColor+Hex.h"
 #import <RMStore.h>
+#import <AFNetworking/AFNetworking-umbrella.h>
 #import "EVOUserVIPManager.h"
 
 //HEX颜色值转化

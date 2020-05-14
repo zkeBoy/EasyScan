@@ -28,10 +28,21 @@
     return self;
 }
 
-- (void)startScan:(void(^)(void))block {
-    [self.lanScanner start];
-    self.scanLanFinishHandler = block;
-    [self.scanDevicesArray removeAllObjects];
+- (void)startScan:(void(^)(void))block failure:(void(^)(void))fblock {
+    [self startNetworkMonitoring:^(AFNetworkReachabilityStatus status) {
+        if (status==AFNetworkReachabilityStatusUnknown||
+            status==AFNetworkReachabilityStatusNotReachable) {
+            self.scanLanFailurHandler = fblock;
+            [self.scanDevicesArray removeAllObjects];
+            if (fblock) {
+                fblock();
+            }
+        }else {
+            [self.lanScanner start];
+            self.scanLanFinishHandler = block;
+            [self.scanDevicesArray removeAllObjects];
+        }
+    }];
 }
 
 #pragma mark - MMLANScannerDelegate
@@ -60,8 +71,8 @@
 }
 
 - (void)lanScanDidFailedToScan {
-    if (self.scanLanFinishHandler) {
-        self.scanLanFinishHandler();
+    if (self.scanLanFailurHandler) {
+        self.scanLanFailurHandler();
     }
 }
 
@@ -177,5 +188,31 @@
     return formattedStr;
 }
 
+- (void)startNetworkMonitoring:(void(^)(AFNetworkReachabilityStatus status))block {
+    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+    // 2.设置网络状态改变后的处理
+    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        // 当网络状态改变了, 就会调用这个block
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown: // 未知网络
+                NSLog(@"未知网络");
+                break;
+            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
+                NSLog(@"没有网络(断网)");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
+                NSLog(@"手机自带网络");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
+                NSLog(@"WIFI");
+                break;
+        }
+        if (block) {
+            block(status);
+        }
+    }];
+    // 3.开始监控
+    [mgr startMonitoring];
+}
 
 @end
