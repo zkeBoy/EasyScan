@@ -36,7 +36,7 @@
 
 #pragma mark - MMLANScannerDelegate
 - (void)lanScanDidFindNewDevice:(MMDevice*)device {
-    NSLog(@"%@",device.ipAddress);
+    //NSLog(@"%@",device.ipAddress);
     if (![self.scanDevicesArray containsObject:device]) {
         if (device.isLocalDevice) {
             self.mySelfDevice = device;
@@ -77,8 +77,16 @@
     if (getifaddrs(&ifa_list) == -1) {
         return 0;
     }
-    uint32_t iBytes = 0;
-    uint32_t oBytes = 0;
+    uint32_t iBytes     = 0;
+    uint32_t oBytes     = 0;
+    uint32_t allFlow    = 0;
+    uint32_t wifiIBytes = 0;
+    uint32_t wifiOBytes = 0;
+    uint32_t wifiFlow   = 0;
+    uint32_t wwanIBytes = 0;
+    uint32_t wwanOBytes = 0;
+    uint32_t wwanFlow   = 0;
+    struct timeval32 time;
     for (ifa = ifa_list; ifa; ifa = ifa->ifa_next) {
         if (AF_LINK != ifa->ifa_addr->sa_family)
             continue;
@@ -86,17 +94,37 @@
             continue;
         if (ifa->ifa_data == 0)
             continue;
-        /* Not a loopback device. */
-        if (strncmp(ifa->ifa_name, "lo", 2)){
+        // Not a loopback device.
+        // network flow
+        if (strncmp(ifa->ifa_name, "lo", 2)) {
             struct if_data *if_data = (struct if_data *)ifa->ifa_data;
-            iBytes += if_data->ifi_ibytes;
             
+            iBytes += if_data->ifi_ibytes;
             oBytes += if_data->ifi_obytes;
+            allFlow = iBytes + oBytes;
+            time = if_data->ifi_lastchange;
+        }
+        
+        //wifi flow
+        if (!strcmp(ifa->ifa_name, "en0")) {
+            struct if_data *if_data = (struct if_data *)ifa->ifa_data;
+            
+            wifiIBytes += if_data->ifi_ibytes;
+            wifiOBytes += if_data->ifi_obytes;
+            wifiFlow    = wifiIBytes + wifiOBytes;
+        }
+        
+        //3G and gprs flow
+        if (!strcmp(ifa->ifa_name, "pdp_ip0")) {
+            struct if_data *if_data = (struct if_data *)ifa->ifa_data;
+            
+            wwanIBytes += if_data->ifi_ibytes;
+            wwanOBytes += if_data->ifi_obytes;
+            wwanFlow    = wwanIBytes + wwanOBytes;
         }
     }
     freeifaddrs(ifa_list);
-    NSLog(@"\n[getInterfaceBytes-Total]%d,%d",iBytes,oBytes);
-    return iBytes + oBytes;
+    return wifiFlow;
 }
 
 - (NSString *)formatNetWork:(long long int)size {
@@ -119,9 +147,7 @@
 
 - (NSString *)getBand {
     long long size = [self getInterfaceBytes];
-    
     size *=8;
-
     NSString *formattedStr = nil;
     if (size == 0){
         formattedStr = NSLocalizedString(@"0",@"");
@@ -135,9 +161,7 @@
         if (model > 512) {
             intsize += 1;
         }
-        
         formattedStr = [NSString stringWithFormat:@"%dK",intsize ];
-        
     }else if (size >= pow(1024, 2) && size < pow(1024, 3)){
         unsigned long long l = pow(1024, 2);
         int intsize = size / pow(1024, 2);
@@ -146,12 +170,10 @@
             intsize +=1;
         }
         formattedStr = [NSString stringWithFormat:@"%dM", intsize];
-        
     }else if (size >= pow(1024, 3)){
         int intsize = size / pow(1024, 3);
         formattedStr = [NSString stringWithFormat:@"%dG", intsize];
     }
-    
     return formattedStr;
 }
 

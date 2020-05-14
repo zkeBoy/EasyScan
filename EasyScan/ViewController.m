@@ -205,7 +205,7 @@
 
 - (void)clickScanDetectingAction {
     //现判断用户是否内购
-    if(![EVOUserVIPManager shareUserVIPManager].isVIP) {
+    if([EVOUserVIPManager shareUserVIPManager].isVIP) {
         [self vipEnterAction];
         return;
     }
