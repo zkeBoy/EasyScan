@@ -24,7 +24,7 @@ DEPENDENCIES:
   - RMStore
 
 SPEC REPOS:
-  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - Masonry
     - MBProgressHUD
@@ -38,6 +38,6 @@ SPEC CHECKSUMS:
   MMLanScan: 86a0f77edbf163be30c1f58321469c7c8ce4c50e
   RMStore: 64ba13a9c040e3b7572765d169f77175cd3243e5
 
-PODFILE CHECKSUM: e926412e6ef2b9c89f3ee2f4a81f4c37615f6b20
+PODFILE CHECKSUM: b220bccc1741c2081e9be9ecf19a69a6b93901ed
 
 COCOAPODS: 1.9.1

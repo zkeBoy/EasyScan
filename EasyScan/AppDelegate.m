@@ -20,11 +20,16 @@
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+#ifdef OpenApplePay
     [self registerStore];
+#else
+    
+#endif
     return YES;
 }
 
 - (void)registerStore {
+#ifdef OpenApplePay
     NSArray * productIds = @[@"unlock001"];
     [[RMStore defaultStore] requestProducts:[NSSet setWithArray:productIds] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
         if([products count] == 0){
@@ -34,6 +39,9 @@
     } failure:^(NSError *error) {
          NSLog(@"--------------请求商品失败------------------");
     }];
+#else
+    
+#endif
 }
 
 
